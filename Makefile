@@ -4,6 +4,12 @@ CP=cp
 CCADMIN=CCadmin
 RANLIB=ranlib
 
+ifeq (i386-mingw32-gcc,$(CC))
+WINDRES=i386-mingw32-windres
+else
+WINDRES=windres
+endif
+
 build: .build-post
 
 .build-pre:
@@ -14,13 +20,13 @@ build: .build-post
 	if [ -d D:/work/jruby-dev/jruby ]; then cp jruby.exe jrubyw.exe jruby.dll D:/work/jruby-dev/jruby/bin/; fi
 
 jruby.res: resources/jruby.rc
-	windres $^ -O coff -o $@
+	$(WINDRES) $^ -O coff -o $@
 
 jruby.exe: jrubyexe.cpp nbexecloader.h utilsfuncs.cpp jruby.res
-	g++ $(CXXFLAGS) $^ -s -o $@ $(LDLIBSOPTIONS)
+	$(CXX) $(CXXFLAGS) $^ -s -o $@ $(LDLIBSOPTIONS)
 
 jrubyw.exe: jrubyexe.cpp nbexecloader.h utilsfuncs.cpp jruby.res
-	g++ $(CXXFLAGS) -DJRUBYW -mwindows $^ -s -o $@ $(LDLIBSOPTIONS)
+	$(CXX) $(CXXFLAGS) -DJRUBYW -mwindows $^ -s -o $@ $(LDLIBSOPTIONS)
 
 clean: .clean-post
 

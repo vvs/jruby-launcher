@@ -109,5 +109,49 @@
         </linkerTool>
       </compileType>
     </conf>
+    <conf name="mingw-cross" type="2">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <compilerSet>MinGW|GNU</compilerSet>
+        <platform>4</platform>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+          <stripSymbols>true</stripSymbols>
+          <architecture>1</architecture>
+          <commandlineTool>i386-mingw32-gcc</commandlineTool>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>include/win32</pElem>
+          </incDir>
+          <warningLevel>2</warningLevel>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <stripSymbols>true</stripSymbols>
+          <architecture>1</architecture>
+          <commandlineTool>i386-mingw32-g++</commandlineTool>
+          <incDir>
+            <pElem>include</pElem>
+            <pElem>include/win32</pElem>
+          </incDir>
+          <warningLevel>2</warningLevel>
+        </ccTool>
+        <linkerTool>
+          <output>jruby.dll</output>
+          <linkerAddLib>
+            <pElem>lib</pElem>
+          </linkerAddLib>
+          <stripSymbols>true</stripSymbols>
+          <linkerKpic>false</linkerKpic>
+          <commandlineTool>${LINK.cc}</commandlineTool>
+          <linkerLibItems>
+            <linkerOptionItem>-lws2_32 -static-libgcc -lws2_32 -Wl,--enable-auto-import -Wl,-Bstatic -lstdc++ -Wl,-Bdynamic</linkerOptionItem>
+            <linkerOptionItem>-ljvm</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+    </conf>
   </confs>
 </configurationDescriptor>

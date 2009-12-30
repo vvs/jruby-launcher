@@ -31,7 +31,7 @@ DEFAULTCONF=mingw
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=mingw mingw64 
+ALLCONFS=mingw mingw64 mingw-cross 
 
 
 # build

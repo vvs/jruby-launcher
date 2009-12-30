@@ -1,4 +1,4 @@
-id ICON "jruby.ico"
+id ICON "resources/jruby.ico"
 
 1 VERSIONINFO
  FILEVERSION    1,0,0,0
